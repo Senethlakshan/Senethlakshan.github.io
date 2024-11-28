@@ -2,10 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #232425;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #221e20;
+        }
+
+        .home-button {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin: 20px auto;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            color: #007bff;
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Blog</h1>
+    <!-- Home Button -->
+    <a href="index.html" class="home-button">Go to Home</a>
+
+    <h1 class="header">Blog</h1>
+
+    <div class="blog-container" id="blog-list"></div>
+
+    <script>
+        const blogs = [
+            {
+                "id": 1,
+                "title": "Mastering React Hooks",
+                "excerpt": "Learn how to use React Hooks for building scalable and maintainable applications. We'll cover all major hooks like useState, useEffect, and custom hooks.",
+                "link": "article1.html"
+            },
+            {
+                "id": 2,
+                "title": "Advanced Spring Boot Performance Tuning",
+                "excerpt": "Learn advanced techniques for optimizing Spring Boot applications. We’ll dive into memory management, database optimization, and concurrent processing.",
+                "link": "article2.html"
+            },
+            {
+                "id": 3,
+                "title": "Building a REST API with Spring Boot",
+                "excerpt": "A step-by-step guide to building a secure and scalable REST API with Spring Boot, including JWT authentication and database integration.",
+                "link": "article3.html"
+            }
+        ];
+
+        // Function to display the blogs dynamically
+        function displayBlogs() {
+            const blogList = document.getElementById('blog-list');
+            blogs.forEach(blog => {
+                const blogCard = document.createElement('div');
+                blogCard.classList.add('blog-card');
+                blogCard.innerHTML = `
+                    <h3>${blog.title}</h3>
+                    <p>${blog.excerpt}</p>
+                    <a href="${blog.link}" class="read-more">Read Article</a>
+                `;
+                blogList.appendChild(blogCard);
+            });
+        }
+
+        // Call function to display the blogs on page load
+        displayBlogs();
+    </script>
 </body>
 </html>
